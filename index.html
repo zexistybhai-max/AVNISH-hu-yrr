@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffb5d0">
+<title>Hey Gadhe Insaan ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:'Poppins',sans-serif;
+ background:linear-gradient(135deg,#ffb6d0,#ffe4ee,#fbd0e3);
+ color:#843653;
+ min-height:100vh;
+ overflow-x:hidden;
+}
+
+button{
+ border:none;
+ cursor:pointer;
+ font-family:inherit;
+}
+
+#particles{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ overflow:hidden;
+ z-index:0;
+}
+
+.heart{
+ position:absolute;
+ bottom:-40px;
+ animation:rise linear forwards;
+ opacity:.8;
+}
+
+@keyframes rise{
+ to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+
+.screen{
+ display:none;
+ min-height:100vh;
+ width:100%;
+ padding:25px 15px;
+ justify-content:center;
+ align-items:center;
+ position:relative;
+ z-index:1;
+}
+
+.screen.active{display:flex}
+
+.card{
+ width:100%;
+ max-width:440px;
+ padding:30px 23px;
+ text-align:center;
+ background:rgba(255,255,255,.83);
+ border:1px solid white;
+ border-radius:28px;
+ box-shadow:0 15px 50px #b84c7540;
+ backdrop-filter:blur(12px);
+ animation:appear .7s ease;
+}
+
+@keyframes appear{
+ from{opacity:0;transform:translateY(25px) scale(.97)}
+ to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+h1,h2{
+ color:#dc4d83;
+}
+
+h1{
+ font-size:30px;
+ line-height:1.3;
+}
+
+h2{font-size:23px}
+
+p{
+ font-size:15px;
+ line-height:1.9;
+}
+
+.script{
+ font-family:'Dancing Script',cursive;
+ font-size:35px;
+ color:#e34c89;
+}
+
+.big{
+ font-size:75px;
+ margin:15px;
+ animation:beat 1.6s infinite;
+}
+
+@keyframes beat{
+ 50%{transform:scale(1.12)}
+}
+
+.btn{
+ display:block;
+ width:100%;
+ padding:14px;
+ margin:12px 0;
+ border-radius:30px;
+ color:white;
+ background:linear-gradient(100deg,#ed5994,#ff91b6);
+ font-size:15px;
+ font-weight:600;
+ box-shadow:0 6px 17px #e85b9440;
+ transition:.2s;
+}
+
+.btn:active{transform:scale(.96)}
+
+.secondary{
+ background:white;
+ color:#df5189;
+ border:1px solid #ffc1d8;
+}
+
+.small{
+ font-size:12px;
+ color:#b66b89;
+}
+
+#music{
+ position:fixed;
+ right:15px;
+ top:15px;
+ z-index:10;
+ border-radius:30px;
+ background:white;
+ color:#d94f88;
+ padding:10px 14px;
+ box-shadow:0 4px 15px #0001;
+}
+
+.choice{
+ background:#fff1f6;
+ border:1px solid #ffd0e1;
+ color:#a8446d;
+}
+
+.choice:hover{background:#ffdce9}
+
+.envelope{
+ font-size:100px;
+ cursor:pointer;
+ animation:beat 1.5s infinite;
+}
+
+.letter{
+ background:#fff7fa;
+ border-radius:20px;
+ padding:20px;
+ text-align:left;
+ line-height:2;
+ border:1px solid #ffcee0;
+}
+
+.rose{
+ font-size:70px;
+ animation:appear 1s ease;
+}
+
+.hidden{display:none!important}
+
+.progress{
+ height:6px;
+ background:#ffe0eb;
+ border-radius:20px;
+ overflow:hidden;
+ margin-bottom:22px;
+}
+
+#bar{
+ height:100%;
+ width:0;
+ background:#e95891;
+ transition:.4s;
+}
+
+footer{
+ margin-top:22px;
+ font-size:11px;
+ color:#ba7792;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<button id="music" onclick="toggleMusic()">♫ Music OFF</button>
+
+<!-- SCREEN 1 -->
+<section class="screen active" id="s1">
+<div class="card">
+ <div class="script">A little surprise...</div>
+ <div class="big">🐼❤️</div>
+ <h1>Hey Gadhe Insaan!</h1>
+ <p>
+  Oye suno! Tumhare liye kuch bahut special hai.
+  Lekin pehle ek smile toh do! 🥺
+ </p>
+ <p class="script">Ready ho na?</p>
+ <button class="btn" onclick="go(2)">Yes! Show me ❤️</button>
+ <p class="small">Made with lots of love, just for you.</p>
+</div>
+</section>
+
+<!-- SCREEN 2 -->
+<section class="screen" id="s2">
+<div class="card">
+ <div class="big">🌷</div>
+ <h1>Welcome, Beautiful!</h1>
+ <p>
+  Kuch log life mein bina kisi reason ke
+  special ban jaate hain...
+ </p>
+ <p>
+  Aur tum unhi mein se ek ho! 🥹
+ </p>
+ <div class="script">You are special ❤️</div>
+ <button class="btn" onclick="go(3)">Awww! Continue 🥰</button>
+</div>
+</section>
+
+<!-- SCREEN 3 -->
+<section class="screen" id="s3">
+<div class="card">
+ <div class="big">💗</div>
+ <h2>Let's Play a Little Game!</h2>
+ <p>Chalo dekhte hain tumhare dil mein kitna romance hai! 😉</p>
+ <div class="progress"><div id="bar"></div></div>
+ <h2 id="question">Question 1</h2>
+ <div id="options"></div>
+ <p id="feedback"></p>
+ <button class="btn hidden" id="nextQ" onclick="nextQuestion()">Next Question 💕</button>
+</div>
+</section>
+
+<!-- SCREEN 4 -->
+<section class="screen" id="s4">
+<div class="card">
+ <div class="big">🎁</div>
+ <h1>Something Special!</h1>
+ <p>
+  Ab tumhare liye ek chhota sa gift hai.
+  Dil se banaya hai, sambhal kar kholna! 🥹
+ </p>
+ <button class="btn" onclick="openGift()">Open Your Gift 🎀</button>
+ <div id="gift" class="hidden">
+  <div class="rose">💐</div>
+  <h2>A Bouquet Just For You!</h2>
+  <p>Real flowers nahi de sakta, toh digital roses hi sahi! 🌹</p>
+  <button class="btn" onclick="go(5)">One More Surprise 💌</button>
+ </div>
+</div>
+</section>
+
+<!-- SCREEN 5 -->
+<section class="screen" id="s5">
+<div class="card">
+ <div class="big">💌</div>
+ <h1>A Secret Letter!</h1>
+ <p>
+  Ye letter sirf tumhare liye hai.
+  Isse kholne ke liye envelope par tap karo.
+ </p>
+ <div class="envelope" onclick="openLetter()">💌</div>
+ <p class="script">Tap to open!</p>
+ <div id="letter" class="letter hidden">
+  <div class="script">Dear Gadhe Insaan ❤️</div>
+  <p>
+   Pata hai? Tum thode se pagal ho,
+   thode se annoying ho... 😂
+   Lekin bahut hi special bhi ho!
+   <br><br>
+   Tumhari smile, tumhari baatein aur
+   tumhari chhoti-chhoti shararatein
+   dil ko bahut achhi lagti hain.
+   <br><br>
+   Kabhi-kabhi bas tumse baat karna hi
+   din ko beautiful bana deta hai.
+   🥹❤️
+   <br><br>
+   I hope tumhari life hamesha khushiyon,
+   smiles aur endless love se bhari rahe.
+   <br><br>
+   Hamesha haste rehna, okay?
+   Aur haan... apna khayal rakhna!
+   <br><br>
+   <span class="script">Lots of love! 🌹</span>
+  </p>
+  <div style="text-align:center;font-size:30px">❤️ 🧸 💗</div>
+ </div>
+ <button class="btn hidden" id="finish" onclick="go(6)">One Last Thing 🥺</button>
+</div>
+</section>
+
+<!-- SCREEN 6 -->
+<section class="screen" id="s6">
+<div class="card">
+ <div class="big">🥹❤️</div>
+ <h1>One Last Question!</h1>
+ <p>
+  Kya tum apni ye beautiful smile
+  hamesha aise hi maintain rakhoge?
+ </p>
+ <button class="btn" onclick="finalMessage()">Pakka Promise! 🤞</button>
+ <button class="btn secondary" onclick="finalMessage()">Of Course! 🥰</button>
+ <div id="final" class="hidden">
+  <div class="script">Yayyyy! ❤️</div>
+  <h2>Mission Completed!</h2>
+  <p>
+   Tumhari smile hi sabse beautiful gift hai.
+   <br>
+   Stay happy, stay blessed! 🌸
+  </p>
+  <div class="big">💖</div>
+  <button class="btn" onclick="celebrate()">Send More Love! 💕</button>
+ </div>
+</div>
+</section>
+
+<script>
+
+let current=1;
+let q=0;
+let musicOn=false;
+let audioContext=null;
+let melodyTimer=null;
+
+function go(n){
+ document.getElementById('s'+current).classList.remove('active');
+ current=n;
+ document.getElementById('s'+current).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(n===3) showQuestion();
+}
+
+const questions=[
+ {
+  q:"Agar hum dono saath hote toh kya karte?",
+  a:["Long romantic walk 🌹","Cute si hug 🤗","Bas baatein karte 🥹"],
+  f:"Awww! Kitna cute answer hai! ❤️"
+ },
+ {
+  q:"Tumhe sabse zyada kya pasand hai?",
+  a:["Cute surprises 🎁","Long conversations 💬","Sweet compliments 💗"],
+  f:"Noted! Tumhare liye aur surprises hone chahiye! 😍"
+ },
+ {
+  q:"Ek perfect day kaisa hoga?",
+  a:["Coffee aur sunset ☕","Movie aur popcorn 🍿","Endless masti 😂"],
+  f:"Perfect! Bas happiness honi chahiye! 🥰"
+ },
+ {
+  q:"Ek secret wish maangni ho toh?",
+  a:["Lots of happiness 🌈","Beautiful memories 🌸","Endless smiles ❤️"],
+  f:"I wish tumhari har achhi wish poori ho! 💖"
+ }
+];
+
+function showQuestion(){
+ let x=questions[q];
+ document.getElementById('question').innerText=x.q;
+ document.getElementById('bar').style.width=((q+1)/4*100)+'%';
+ document.getElementById('feedback').innerText='';
+ document.getElementById('nextQ').classList.add('hidden');
+
+ let box=document.getElementById('options');
+ box.innerHTML='';
+
+ x.a.forEach(a=>{
+  let b=document.createElement('button');
+  b.className='btn choice';
+  b.innerText=a;
+  b.onclick=()=>{
+   box.querySelectorAll('button').forEach(v=>v.disabled=true);
+   document.getElementById('feedback').innerText=x.f;
+   document.getElementById('nextQ').classList.remove('hidden');
+  };
+  box.appendChild(b);
+ });
+}
+
+function nextQuestion(){
+ q++;
+ if(q<questions.length) showQuestion();
+ else go(4);
+}
+
+function openGift(){
+ document.getElementById('gift').classList.remove('hidden');
+ burst(20);
+}
+
+function openLetter(){
+ document.getElementById('letter').classList.remove('hidden');
+ document.getElementById('finish').classList.remove('hidden');
+ burst(25);
+}
+
+function finalMessage(){
+ document.getElementById('final').classList.remove('hidden');
+ burst(30);
+}
+
+function createHeart(){
+ const h=document.createElement('span');
+ h.className='heart';
+ h.innerText=['❤️','💕','💗','🌸','✨','💖'][Math.floor(Math.random()*6)];
+ h.style.left=Math.random()*100+'%';
+ h.style.fontSize=(15+Math.random()*25)+'px';
+ h.style.animationDuration=(5+Math.random()*5)+'s';
+ document.getElementById('particles').appendChild(h);
+ setTimeout(()=>h.remove(),10000);
+}
+
+setInterval(createHeart,600);
+
+function burst(n){
+ for(let i=0;i<n;i++){
+  setTimeout(createHeart,i*70);
+ }
+}
+
+function celebrate(){
+ burst(60);
+ document.getElementById('final').innerHTML=
+ '<div class="big">💖</div>'+
+ '<h1>You Are Amazing!</h1>'+
+ '<p>Sending you a million virtual hugs! 🤗</p>'+
+ '<div class="script">Stay happy forever! 🌹</div>';
+}
+
+// Gentle original synthesized melody
+function toggleMusic(){
+ if(musicOn){
+  musicOn=false;
+  clearInterval(melodyTimer);
+  if(audioContext) audioContext.suspend();
+  document.getElementById('music').innerText='♫ Music OFF';
+  return;
+ }
+
+ const AudioCtx=window.AudioContext||window.webkitAudioContext;
+ if(!AudioCtx) return;
+
+ if(!audioContext) audioContext=new AudioCtx();
+ audioContext.resume();
+ musicOn=true;
+ document.getElementById('music').innerText='♫ Music ON';
+
+ const notes=[261.63,329.63,392,329.63,293.66,349.23,440,392];
+ let i=0;
+
+ function play(){
+  if(!musicOn)return;
+  let osc=audioContext.createOscillator();
+  let gain=audioContext.createGain();
+  osc.type='sine';
+  osc.frequency.value=notes[i++%notes.length];
+  gain.gain.setValueAtTime(.0001,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.055,audioContext.currentTime+.1);
+  gain.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+.65);
+  osc.connect(gain);
+  gain.connect(audioContext.destination);
+  osc.start();
+  osc.stop(audioContext.currentTime+.7);
+ }
+ play();
+ melodyTimer=setInterval(play,800);
+}
+
+</script>
+</body>
+</html>
